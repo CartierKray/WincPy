@@ -9,7 +9,7 @@ def farm_action(
     weather, time_of_day, cows_milking_status, cows_location, season, slurry_tank, grass_status,):
 
     actions = ""
-
+    moved_cows = False
 
     if time_of_day == "night" and weather == "rainy" and cows_location != "cowshed":
         actions += "take cows to cowshed\n"
