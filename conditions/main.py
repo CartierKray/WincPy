@@ -4,31 +4,42 @@ __human_name__ = 'conditions'
 
 # Add your code after this line
 
-def farm_action(weather, time_of_day, cow_milking_status, cow_location, season, slurry_tank, grass_status):
-    actions = []
 
-    if (cow_location == 'pasture' and time_of_day == 'night') or (weather == 'rainy' and cow_location != 'cowshed'):
-        actions.append('take cows to cowshed')
+def farm_action(
+    weather, time_of_day, cows_milking_status, cows_location, season, slurry_tank, grass_status,):
 
-    if cow_milking_status and cow_location == 'cowshed':
-        actions.append('milk cows')
-
-    if slurry_tank and cow_location == 'cowshed' and weather != 'sunny' and weather != 'windy':
-        actions.append('fertilize pasture')
+    actions = ""
 
 
-    if grass_status and season == 'spring' and weather == 'sunny' and cow_location != 'pasture':
-        if cow_location == 'cowshed':
-            actions.append('take cows back to pasture')
-        actions.append('mow grass')
-        if cow_location != 'cowshed':
-            actions.append('take cows to cowshed')
+    if time_of_day == "night" and weather == "rainy" and cows_location != "cowshed":
+        actions += "take cows to cowshed\n"
+    elif cows_milking_status:
+        if cows_location != "cowshed":
+            actions += "take cows to cowshed\n"
+            moved_cows = True
+        actions += "milk cows\n"
+        if moved_cows:
+            actions += "take cows back to pasture\n"
+    elif slurry_tank and weather != "sunny" and weather != "windy":
+        if cows_location != "cowshed":
+            actions += "take cows to cowshed\n"
+            moved_cows = True
+        actions += "fertilize pasture\n"
+        if moved_cows:
+            actions += "take cows back to pasture\n"
+    elif grass_status and season == "spring" and weather == "sunny":
+        if cows_location == "pasture":
+            actions += "take cows to cowshed\n"
+            moved_cows = True
+        actions += "mow grass\n"
+        if moved_cows:
+            actions += "take cows back to pasture\n"
+    else:
+        actions += "wait\n"
 
-    if not actions:
-        actions.append('wait')
+    return actions[:-1]
 
-    return '\n'.join(actions)
 
-print('sunny', 'day', True, 'pasture', 'spring', False, True)       
+print(farm_action("rainy", "night", False, "pasture", "winter", False, False))
 
 
