@@ -11,9 +11,32 @@ __human_name__ = "for"
 
 """ Write your functions here. """
 
+# Part 1 
+def shortest_names(country_names):
+
+
+
+
+# Part 2 
+def most_vowels(country_names):
+
+
+
+
+
+# Part 3 
+def alphabet_set(country_names):
+
+
+
+
+
 # This block is only run if this file is the entrypoint; python main.py
 # It is not run if it is imported as a module: `from main import *`
 if __name__ == "__main__":
     countries = get_countries()
 
     """ Write the calls to your functions here. """
+
+
+
