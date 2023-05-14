@@ -22,6 +22,8 @@ def create_passport(name, date_of_birth, place_of_birth, height, nationality):
     return passport
 
 
+
+
 # Part 2
 def add_stamp(passport, country):
     if 'stamps' not in passport:
@@ -34,4 +36,18 @@ def add_stamp(passport, country):
 
 
 
-# Part 3 
+
+# Part 3
+def add_biometric_data(passport, biometric_type, value, date):
+    if 'biometric' not in passport:
+        passport['biometric'] = {}
+
+    passport['biometric'][biometric_type] = {
+        'date': date,
+        'value': value
+    }
+
+    return passport
+
+
+
