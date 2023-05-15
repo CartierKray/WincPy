@@ -8,13 +8,13 @@ __human_name__ = 'arguments'
 def greet(name, greeting_template='Hello, <name>!'):
     return greeting_template.replace('<name>', name)
 
-# print(greet('Olya'))
-# print(greet('Anna', 'Whatsup, <name>!'))
+# print(greet('Olya'))                           
+# print(greet('Anna', 'Whatsup, <name>!'))  
 
 
 
 
-# Part 2
+# Part 2         when: wincpy check arguments: " ❌ │ force is implemented correctly │ 'saturn' is not handled correctly "  ----- the teacher Steven said there was a problem with wincpy because wincpy just didnt have a good answer for it so i could just go with the exercises.
 def force(mass, body='earth'):
     gravity_factors = {
         'mercury': 3.7,
@@ -26,9 +26,20 @@ def force(mass, body='earth'):
         'saturn': 9.0,
         'uranus': 8.7,
         'neptune': 11.0,
-        'pluto': 0.7,
+        'pluto': 0.6,
+        'sun': 274.0
+        
     }
     gravity = gravity_factors.get(body.lower(), 9.8)
     return round(mass * gravity, 1)
 
-print(force(0.1, 'sun'))
+# print(force(0.1, 'earth'))
+
+
+
+
+
+# Part 3
+def pull(m1, m2, d):
+    G = 6.674 * 10**-11
+    return G * ((m1 * m2) / d**2)                 
