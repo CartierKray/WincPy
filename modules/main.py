@@ -4,11 +4,9 @@ __human_name__ = 'modules'
 
 # Add your code after this line
 
-
 # 1
 import this
 print(this)
-
 
 
 # 2
@@ -18,13 +16,11 @@ def wait(seconds):
 print(time)
 
 
-
 # 3
 import math
 def my_sin(number):
     return math.sin(number)
 print(my_sin)
-
 
 
 # 4
@@ -35,13 +31,11 @@ def iso_now():
 print(iso_now)
 
 
-
-# 5
+# 5 | Nog niet af
 import sys
 def platform():
     return sys.platform
 print(platform)
-
 
 
 # 6
