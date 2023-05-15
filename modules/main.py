@@ -18,11 +18,13 @@ def wait(seconds):
 print(time)
 
 
+
 # 3
 import math
 def my_sin(number):
     return math.sin(number)
 print(my_sin)
+
 
 
 # 4
@@ -31,6 +33,7 @@ def iso_now():
     current_time = datetime.now().strftime('%Y-%m-%dT%H:%M')
     return current_time
 print(iso_now)
+
 
 
 # 5
