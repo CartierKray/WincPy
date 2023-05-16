@@ -14,7 +14,7 @@ def greet(name, greeting_template='Hello, <name>!'):
 
 
 
-# Part 2         when: wincpy check arguments: " ❌ │ force is implemented correctly │ 'saturn' is not handled correctly "  ----- the teacher Steven said there was a problem with wincpy because wincpy just didnt have a good answer for it so i could just go with the exercises.
+# Part 2        
 def force(mass, body='earth'):
     gravity_factors = {
         'mercury': 3.7,
