@@ -26,7 +26,7 @@ def force(mass, body='earth'):
         'saturn': 9.0,
         'uranus': 8.7,
         'neptune': 11.0,
-        'pluto': 0.6,
+        'pluto': 0.7,
         'sun': 274.0
         
     }
