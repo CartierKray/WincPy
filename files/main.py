@@ -9,13 +9,11 @@ import shutil
 
 # 1
 base_path = os.getcwd()
-cache_path = os.path.join(base_path, "cache")
+cache_path = os.path.join(base_path,"files", "cache")
 data_path = os.path.join(base_path, "data.zip")
 
 def clean_cache():
     if os.path.exists(cache_path):
         shutil.rmtree(cache_path)
-    os.mkdir("cache") 
-
-
-
+    os.mkdir(cache_path)
+clean_cache()
