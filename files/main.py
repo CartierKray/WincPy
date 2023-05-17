@@ -43,7 +43,7 @@ cache_zip(zip_file_path, cache_dir_path)
 
 
 
-#3
+# 3
 def cached_files():
     file_list = []
     for root, dirs, files in os.walk(cache_path):
@@ -57,3 +57,20 @@ def cached_files():
 cache_dir_path = os.path.join(base_path, "files", "cache")
 cache_files = cached_files()
 print(cache_files)
+
+
+
+
+# 4
+def find_password(file_paths):
+    password_indicator = "password"
+    for file_path in file_paths:
+        with open(file_path,'r') as file:
+            contents = file.read()
+            if password_indicator in contents:
+                password_index = contents.index(password_indicator)
+                password = contents[password_index + len(password_indicator) + 1:]
+   
+    return password
+
+print(find_password(cached_files()))
