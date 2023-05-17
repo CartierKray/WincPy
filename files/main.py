@@ -35,8 +35,25 @@ def cache_zip(zip_file_path, cache_dir_path):
     
     print("Zip file extracted successfully.")
 
-# Example usage
 zip_file_path = os.path.join(base_path, "files", "data.zip")
 cache_dir_path = os.path.join(base_path, "files", "cache")
 
 cache_zip(zip_file_path, cache_dir_path)
+
+
+
+
+#3
+def cached_files():
+    file_list = []
+    for root, dirs, files in os.walk(cache_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if os.path.isfile(file_path):
+                file_list.append(file_path)
+
+    return file_list
+
+cache_dir_path = os.path.join(base_path, "files", "cache")
+cache_files = cached_files()
+print(cache_files)
