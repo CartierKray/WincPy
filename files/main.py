@@ -62,15 +62,18 @@ print(cache_files)
 
 
 # 4
-def find_password(file_paths):
-    password_indicator = "password"
-    for file_path in file_paths:
-        with open(file_path,'r') as file:
-            contents = file.read()
-            if password_indicator in contents:
-                password_index = contents.index(password_indicator)
-                password = contents[password_index + len(password_indicator) + 1:]
-   
-    return password
+def find_password(list_of_files):
+    for file in list_of_files:
+        with open(file) as f:
+            for line in f:
+                if "password" in line:
+                    split_line = line.split(" ", 1)
+                    return split_line[1].replace("\n", "")
 
-print(find_password(cached_files()))
+
+if __name__ == "__main__":
+    clean_cache()
+    cache_zip(data_path, cache_path)
+    cached_files()
+    print(find_password(cached_files()))
+
