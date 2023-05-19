@@ -62,18 +62,19 @@ print(cache_files)
 
 
 # 4
-def find_password(list_of_files):
-    for file in list_of_files:
-        with open(file) as f:
-            for line in f:
+def find_password(cached_files):
+    for file in cached_files:
+        with open(file) as files:
+            for line in files:
                 if "password" in line:
-                    split_line = line.split(" ", 1)
-                    return split_line[1].replace("\n", "")
-
+                    split = line.split()
+                    password = [x for x in split if 'password' in x]
+                    return split[1]
 
 if __name__ == "__main__":
+    print([x for x in os.listdir() if os.path.isdir(x)])
     clean_cache()
-    cache_zip(data_path, cache_path)
+    cache_zip(zip_file_path, cache_dir_path)
     cached_files()
-    print(find_password(cached_files()))
 
+    
