@@ -22,19 +22,20 @@ to Ask for Forgiveness than Permission (EAFP)"""
 
 # Returns the addition of x and y if it's defined, otherwise returns 0
 def add(x, y):
-    if type(x) is str and (type(y) is int or type(y) is float):
-        return 0
-    elif type(y) is str and (type(x) is int or type(x) is float):
-        return 0
-    return x + y
+    try:
+        return x + y
+    except TypeError:
+        return 0 
+ 
 
 
 # Returns the contents of the file at 'filename', or an empty string if the
 # file does not exist
 def read_file(filename):
-    if os.path.exists(filename):
+    try:
+        os.path.exists(filename)
         return open(filename, "r").read()
-    else:
+    except:
         return ""
 
 
@@ -42,9 +43,10 @@ def read_file(filename):
 def get_item_from_list(l, index):
     max_index = len(l) - 1
     min_index = -1 - max_index
-    if index <= max_index and index >= min_index:
+    try:
+        index <= max_index and index >= min_index
         return l[index]
-    else:
+    except:
         return None
 
 
