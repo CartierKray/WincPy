@@ -32,3 +32,10 @@ class Player():
     # Define an instance method strength that takes no arguments and returns a tuple like the following, where the string speed is replaced by the player's actual highest attribute and the value corresponds to that attribute
     def strength(self):
         attributes = [("speed", self.speed), ("endurance", self.endurance), ("accuracy", self.accuracy)]
+        attributes.sort(key=lambda x: (-x[1], x[0]))
+        return tuple(attributes[0])
+    
+    
+player = Player("Bob", 0.8, 0.6, 0.7)
+best_attribute = player.strength()
+print(best_attribute)
