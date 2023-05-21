@@ -41,3 +41,11 @@ class Player():
 player = Player("Bob", 0.8, 0.8, 0.7)
 best_attribute = player.strength()
 print(best_attribute)
+
+
+
+
+# 2
+class Commentator():
+    def __init__(self, name):
+        self.name = name
