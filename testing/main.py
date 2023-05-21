@@ -9,7 +9,7 @@ def flatten_dict(dictionary):
     flattened = []
     for value in dictionary.values():
         if isinstance(value, list):
-            flattened.extend(value)
+            flattened.append(value)
         else:
             flattened.append(value)
     return flattened
