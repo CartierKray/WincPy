@@ -6,20 +6,13 @@ def get_none():
 
 # 2
 def flatten_dict(dictionary):
-    result = []
-
-    def flatten_helper(obj):
-        if isinstance(obj, dict):
-            for value in obj.values():
-                flatten_helper(value)
-        elif isinstance(obj, list):
-            for item in obj:
-                flatten_helper(item)
+    flattened = []
+    for value in dictionary.values():
+        if isinstance(value, list):
+            flattened.extend(value)
         else:
-            result.append(obj)
-
-    flatten_helper(dictionary)
-    return result
+            flattened.append(value)
+    return flattened
 
 
 

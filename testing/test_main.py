@@ -14,7 +14,7 @@ test_get_none()
 # 2
 def test_flatten_dict():
     # Test with a simple dictionary
-    assert flatten_dict({'a': [42, 350], 'b': 3.14}) == [42, 3.14]
+    assert flatten_dict({'a': 42, 'b': 3.14}) == [42, 3.14]
 
     # Test with a dictionary containing a list
     assert flatten_dict({'a': [42, 350], 'b': 3.14}) == [[42, 350], 3.14]
