@@ -20,8 +20,9 @@ def flatten_list(lst):
     result = []
     for item in lst:
         if isinstance(item, (dict, list)):
-            result.extend(flatten_list(item))  # Recursively flatten nested lists
+            result.extend(flatten_list(item))
         else:
             result.append(item)
     return result
+
 
