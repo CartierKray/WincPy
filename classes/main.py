@@ -26,16 +26,18 @@ class Player():
 
     # Define an instance method introduce that takes no arguments (except self!) and returns a string like the following, where 'Bob' is replaced by the player's actual name: 'Hello everyone, my name is Bob.' 
     def introduce(self):
-        return "Hello everyone, my name is {}.".format(self.name)
+        return f"Hello everyone, my name is {self.name}."
 
 
     # Define an instance method strength that takes no arguments and returns a tuple like the following, where the string speed is replaced by the player's actual highest attribute and the value corresponds to that attribute
     def strength(self):
         attributes = [("speed", self.speed), ("endurance", self.endurance), ("accuracy", self.accuracy)]
-        attributes.sort(key=lambda x: (-x[1], x[0]))
-        return tuple(attributes[0])
+        attributes.sort(key=lambda x: (-x[1], x[1]))
+        best_value = attributes[0][1]
+        best_attributes = [attr[0] for attr in attributes if attr[1] == best_value]
+        return (best_attributes[0], best_value)
     
-    
-player = Player("Bob", 0.8, 0.6, 0.7)
+
+player = Player("Bob", 0.8, 0.8, 0.7)
 best_attribute = player.strength()
 print(best_attribute)
