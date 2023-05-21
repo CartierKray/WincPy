@@ -1,4 +1,5 @@
 import main
+from main import flatten_dict
 
 # 1
 def test_get_none():
@@ -12,10 +13,14 @@ test_get_none()
 
 # 2
 def test_flatten_dict():
-    dictionary = {'a': [42, 350], 'b': 3.14 }
-    expected_output = [[42, 350], 3.14]
-    result = main.flatten_dict(dictionary)
-    assert result == expected_output, f"Expected: {expected_output}, Got: {result}"
-    print('Test #2 Passed!')
+    # Test with a simple dictionary
+    assert flatten_dict({'a': [42, 350], 'b': 3.14}) == [42, 3.14]
 
-test_flatten_dict()
+    # Test with a dictionary containing a list
+    assert flatten_dict({'a': [42, 350], 'b': 3.14}) == [[42, 350], 3.14]
+
+    # Test with a dictionary containing nested dictionaries
+    assert flatten_dict({'a': {'inner_a': 42, 'inner_b': 350}, 'b': 350}) == [{'inner_a': 42, 'inner_b': 350}, 350]
+
+    # Test with a dictionary containing multiple levels of nesting
+    assert flatten_dict({'a': {'inner_a': {'inner_inner_a': 420}}, 'b': [1, 2, 3]}) == [420, 1, 2, 3]

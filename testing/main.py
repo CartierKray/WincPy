@@ -6,5 +6,22 @@ def get_none():
 
 # 2
 def flatten_dict(dictionary):
-    values = list(dictionary.values())
-    return values
+    result = []
+    for value in dictionary.values():
+        if isinstance(value, dict):
+            result.extend(flatten_dict(value))
+        elif isinstance(value, list):
+            result.extend(flatten_list(value))
+        else:
+            result.append(value)
+    return result
+
+def flatten_list(lst):
+    result = []
+    for item in lst:
+        if isinstance(item, (dict, list)):
+            result.extend(flatten_list(item))  # Recursively flatten nested lists
+        else:
+            result.append(item)
+    return result
+
