@@ -7,22 +7,19 @@ def get_none():
 # 2
 def flatten_dict(dictionary):
     result = []
-    for value in dictionary.values():
-        if isinstance(value, dict):
-            result.extend(flatten_dict(value))
-        elif isinstance(value, list):
-            result.extend(flatten_list(value))
+
+    def flatten_helper(obj):
+        if isinstance(obj, dict):
+            for value in obj.values():
+                flatten_helper(value)
+        elif isinstance(obj, list):
+            for item in obj:
+                flatten_helper(item)
         else:
-            result.append(value)
+            result.append(obj)
+
+    flatten_helper(dictionary)
     return result
 
-def flatten_list(lst):
-    result = []
-    for item in lst:
-        if isinstance(item, (dict, list)):
-            result.extend(flatten_list(item))
-        else:
-            result.append(item)
-    return result
 
 
