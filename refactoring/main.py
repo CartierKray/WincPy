@@ -4,50 +4,57 @@ __human_name__ = "refactoring"
 
 # Add your code after this line
 
-alice_name = "Alice Aliceville"
-alice_profession = "electrician"
-bob_name = "Bob Bobsville"
-bob_profession = "painter"
-craig_name = "Craig Craigsville"
-craig_profession = "plumber"
+class Homeowner:
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+        self.needs = []
 
-alfred_name = "Alfred Alfredson"
-alfred_address = "Alfredslane 123"
-alfred_needs = ["painter", "plumber"]
-bert_name = "Bert Bertson"
-bert_address = "Bertslane 231"
-bert_needs = ["plumber"]
-candice_name = "Candice Candicedottir"
-candice_address = "Candicelane 312"
-candice_needs = ["electrician", "painter"]
+    def add_need(self, need):
+        self.needs.append(need)
 
-alfred_contracts = []
-for need in alfred_needs:
-    if need == alice_profession:
-        alfred_contracts.append(alice_name)
-    elif need == bob_profession:
-        alfred_contracts.append(bob_name)
-    elif need == craig_profession:
-        alfred_contracts.append(craig_name)
 
-bert_contracts = []
-for need in bert_needs:
-    if need == alice_profession:
-        bert_contracts.append(alice_name)
-    elif need == bob_profession:
-        bert_contracts.append(bob_name)
-    elif need == craig_profession:
-        bert_contracts.append(craig_name)
+class Specialist:
+    def __init__(self, name, profession):
+        self.name = name
+        self.profession = profession
 
-candice_contracts = []
-for need in candice_needs:
-    if need == alice_profession:
-        candice_contracts.append(alice_name)
-    elif need == bob_profession:
-        candice_contracts.append(bob_name)
-    elif need == craig_profession:
-        candice_contracts.append(craig_name)
+
+class Electrician(Specialist):
+    pass
+
+
+class Painter(Specialist):
+    pass
+
+
+class Plumber(Specialist):
+    pass
+
+
+# Create homeowners
+alfred = Homeowner("Alfred Alfredson", "Alfredslane 123")
+bert = Homeowner("Bert Bertson", "Bertslane 231")
+candice = Homeowner("Candice Candicedottir", "Candicelane 312")
+
+# Create specialists
+alice = Electrician("Alice Aliceville", "electrician")
+bob = Painter("Bob Bobsville", "painter")
+craig = Plumber("Craig Craigsville", "plumber")
+
+# Add needs for homeowners
+alfred.add_need(bob.profession)
+alfred.add_need(craig.profession)
+bert.add_need(craig.profession)
+candice.add_need(alice.profession)
+candice.add_need(bob.profession)
+
+# Match specialists with homeowners
+alfred_contracts = [specialist.name for specialist in [alice, bob, craig] if specialist.profession in alfred.needs]
+bert_contracts = [specialist.name for specialist in [alice, bob, craig] if specialist.profession in bert.needs]
+candice_contracts = [specialist.name for specialist in [alice, bob, craig] if specialist.profession in candice.needs]
 
 print("Alfred's contracts:", alfred_contracts)
 print("Bert's contracts:", bert_contracts)
 print("Candice's contracts:", candice_contracts)
+
