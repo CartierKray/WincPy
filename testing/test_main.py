@@ -22,4 +22,5 @@ def test_flatten_dict():
     # Test with a dictionary containing nested dictionaries
     assert flatten_dict({'a': {'inner_a': 42, 'inner_b': 350}, 'b': 350}) == [{'inner_a': 42, 'inner_b': 350}, 350]
 
-
+    # Test with a dictionary containing multiple levels of nesting
+    assert flatten_dict({'a': {'inner_a': {'inner_inner_a': 42}}, 'b': [1, 2, 3]}) == [{'inner_a':{'inner_inner_a': 42}}, [1, 2, 3]]
