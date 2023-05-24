@@ -132,7 +132,9 @@ if __name__ == "__main__":
 
 
 # ----------------------------------------------------------- #
+ 
 
+"""
 # Check if bought.csv file exists
 if os.path.exists("bought.csv"):
     print("bought.csv file exists")
@@ -147,3 +149,4 @@ else:
 
 # Check the directory 
 print("Current working directory:", os.getcwd())
+"""
