@@ -1,4 +1,5 @@
 # Imports
+import os
 import argparse
 import csv
 from datetime import date
@@ -6,7 +7,6 @@ from datetime import date
 # Do not change these lines.
 __winc_id__ = "a2bc36ea784242e4989deb157d527ba0"
 __human_name__ = "superpy"
-
 
 # Your code below this line.
 def main():
@@ -43,35 +43,107 @@ def main():
         product_name = args.product_name
         product_price = args.product_price
         expiration_date = args.expiration_date
-        # Write this to the "bought.csv" data file using csv.writer
-    elif args.command == "sell":
+        buy_product(product_name, product_price, expiration_date)
+
+    elif args.command == "selling":
         # Implement the selling logic
         product_name = args.product_name
         product_price = args.product_price
-        # Check if product is in stock
-        # if the product is available, write the data to the "sold.csv" data file using csv.writer
-        # if it's not available, a error message wilt display
-        
+        sell_product(product_name, product_price)
+
     elif args.command == "report":
         # Implement generating reports logic
         report_type = args.type
         report_date = args.date
-        if report_type == "inventory":
-            # Generate and display the inventory report
-            pass
-        if report_type == "revenue":
-            # Generate and display the inventory report
-            pass
-        if report_type == "profit":
-            #Generate and display the inventory report
-            pass
+        generate_report(report_type, report_date)
 
-        # Implement the logic for advancing the time
-        if args.advanced_time
-            # Read the current date from the text file
-            # Advance the date by the specified number of the days
-            # Write the updated date back to the text file
+    # Implement the logic for advancing the time
+    if args.advanced_time:
+        advance_time(args.advanced_time)
+
+
+def buy_product(product_name, product_price, expiration_date):
+    # Read the last ID from the bought.csv data file
+    with open("bought.csv", "r") as file:
+        reader = csv.reader(file)
+        last_id = max(int(row[0]) for row in reader) if any(reader) else 0
+
+    # Increment the ID for new purchase
+    bought_id = last_id + 1
+
+    # Get the current date
+    current_date = date.today().strftime("%Y-%m-%d")
+
+    # Append the purchase data to bought.csv data file
+    with open("bought.csv", "a", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow([bought_id, product_name, product_price, current_date, expiration_date])
+
+    print("OK")
+
+def sell_product(product_name, product_price):
+    # Read the available stock from the bought.csv data file
+    with open("bought.csv", "r") as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+
+    # Find the product in the stock
+    for row in rows:
+        if row[1] == product_name:
+            bought_id = row[0]
+            expiration_date = row[4]
+
+            # remove the product from the stock
+            rows.remove(row)
+
+            # Append the sale data to sold.csv data file
+            sold_data = [get_sale_id(), bought_id, get_current_date(), product_price]
+            with open("sold.csv", "a", newline="") as sold_file:
+                sold_writer = csv.writer(sold_file)
+                sold_writer.writerow(sold_data)
+
+            print("OK")
+            break
+    else:
+        print("ERROR: Product not in stock")
+
+def generate_report(report_type, report_date):
+    # Implement the logic for generating reports
+    print("Generating report:", report_type)
+    if report_date:
+        print("Date:", report_date)
+
+def advance_time(days):
+    # Implement the logic for advancing the time by the given number of days
+    print("Advancing time by", days, "days")
+
+def get_sale_id():
+    # Placeholder code to generate a unique sale ID
+    return "SALE-123"
+
+
+def get_current_date():
+    # Placeholder code to get the current date
+    return date.today().strftime("%Y-%m-%d")
 
 
 if __name__ == "__main__":
     main()
+
+
+# ----------------------------------------------------------- #
+
+# Check if bought.csv file exists
+if os.path.exists("bought.csv"):
+    print("bought.csv file exists")
+else:
+    print("bought.csv file does not exist")
+
+# Check if sold.csv file exists
+if os.path.exists("sold.csv"):
+    print("sold.csv file exists")
+else:
+    print("sold.csv file does not exist")
+
+# Check the directory 
+print("Current working directory:", os.getcwd())
