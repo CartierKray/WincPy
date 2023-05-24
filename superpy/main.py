@@ -10,7 +10,14 @@ __human_name__ = "superpy"
 
 # Your code below this line.
 def main():
-    pass
+    parser = argparse.ArgumentParser(description="SuperPy - Supermarket Inventory Tool")
+
+    # Add command-line arguments for different operations
+    subparsers = parser.add_subparsers(dest="command")
+
+    # Command for buying
+    buy_parser = subparsers.add_parser("buy", )
+
 
 
 if __name__ == "__main__":
