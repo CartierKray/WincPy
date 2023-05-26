@@ -65,33 +65,14 @@ def main():
 
 
 def buy_product(product_name, product_price, expiration_date):
-    # Read the last ID from the bought.csv data file
-    with open("bought.csv", "r") as file:
-        reader = csv.reader(file)
-        last_id = max(int(row[0]) for row in reader) if any(reader) else 0
-
-    # Increment the ID for new purchase
-    bought_id = last_id + 1
-
-    # Get the current date
-    current_date = date.today().strftime("%Y-%m-%d")
-
-    # Append the purchase data to bought.csv data file
-    with open("bought.csv", "a", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow([bought_id, product_name, product_price, current_date, expiration_date])
-
-    print("OK")
-
-
-def sell_product(product_name, product_price):
     # Read the available stock from the bought.csv data file
     with open("bought.csv", "r") as file:
         reader = csv.reader(file)
-        rows = list(reader)
+        rows = list(reader)[1:]  # Skip the header row
 
     # Find the product in the stock
     for row in rows:
+        print("Row:", row)  # Add this line for debugging
         if row[1] == product_name:
             bought_id = row[0]
             expiration_date = row[4]
@@ -109,6 +90,36 @@ def sell_product(product_name, product_price):
             break
     else:
         print("ERROR: Product not in stock")
+
+
+
+
+def sell_product(product_name, product_price):
+    # Read the available stock from the bought.csv data file
+    with open("bought.csv", "r") as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+
+    # Find the product in the stock
+    for row in rows:
+        if len(row) >= 2 and row[1] == product_name:  # Add a check for the row length
+            bought_id = row[0]
+            expiration_date = row[4]
+
+            # remove the product from the stock
+            rows.remove(row)
+
+            # Append the sale data to sold.csv data file
+            sold_data = [get_sale_id(), bought_id, get_current_date(), product_price]
+            with open("sold.csv", "a", newline="") as sold_file:
+                sold_writer = csv.writer(sold_file)
+                sold_writer.writerow(sold_data)
+
+            print("OK")
+            break
+    else:
+        print("ERROR: Product not in stock")
+
 
 
 def generate_report(report_type, report_date):
@@ -234,6 +245,7 @@ print("Current working directory:", os.getcwd())
 
 # Selling
 # python main.py selling --product-name "Apple" --product-price 1.99
+
 
 
 # Generating a report
