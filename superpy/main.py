@@ -252,11 +252,20 @@ print("Current working directory:", os.getcwd())
 # python main.py report inventory
 
 
-# Generate a inventory report
-# python main.py report revenue --date "2023-05-01"
+# Generate a inventory report for specified date "2023-05-15"
+# python main.py report revenue --date "2023-05-15"
 
 
-# Generate a revenue report for specified date "2023-05-01"
-# python main.py report profit
+# Generate a profit report for specified date "2023-05-25"
+#python main.py report profit --date "2023-05-25"
+
+
+# Generate a revenue report for specified date "2023-05-05"
+# python main.py report profit --date "2023-05-05"
+
+
+# Advance Time, (7) stand for days ahead
+# python main.py --advanced-time 7
+
 
 
