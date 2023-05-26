@@ -131,7 +131,7 @@ if __name__ == "__main__":
     main()
 
 
-# ----------------------------------------------------------- #
+# ------------------------ Checking ----------------------------------- #
  
 
 """
@@ -150,3 +150,27 @@ else:
 # Check the directory 
 print("Current working directory:", os.getcwd())
 """
+
+
+
+# ------------------------ Testing in Terminal ----------------------------------- #
+
+
+# Buying 
+# python main.py buy --product-name "Apple" --product-price 1.99 --expiration-date "2023-05-31"
+
+
+# Selling
+# python main.py selling --product-name "Apple" --product-price 1.99
+
+
+# Generating a report
+# python main.py report inventory
+
+
+# Generate a inventory report
+# python main.py report revenue --date "2023-05-01"
+
+
+# Generate a revenue report for specified date "2023-05-01"
+# python main.py report profit
