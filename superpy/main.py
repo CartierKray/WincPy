@@ -3,6 +3,8 @@ import os
 import argparse
 import csv
 from datetime import date
+import matplotlib.pyplot as plt
+from rich import print
 
 # Do not change these lines.
 __winc_id__ = "a2bc36ea784242e4989deb157d527ba0"
@@ -112,6 +114,65 @@ def generate_report(report_type, report_date):
     print("Generating report:", report_type)
     if report_date:
         print("Date:", report_date)
+    
+    # Visualise addition statistics using Matplotlib
+    if report_type == "inventory":
+        inventory = get_inventory_data()
+        visualize_inventory()
+    elif report_type == "revenue":
+        revenue = get_revenue_data()
+        visualize_revenue()
+    elif report_type == "profit":
+        profit = get_profit_data()
+        visualize_profit()
+
+
+def visualize_inventory(inventory):
+    # Visualize inventory statistics using Matplotlib
+    labels = [item[0] for item in inventory]
+    quantities = [item[1] for item in inventory]
+
+    plt.bar(labels, quantities)
+    plt.xlabel("Product")
+    plt.ylabel("Quantity")
+    plt.title("Inventory")
+    plt.show
+
+def visualize_revenue(revenue):
+    # Visualize inventory statistics using Matplotlib
+    labels = [item[0] for item in revenue]
+    amounts = [item[1] for item in revenue]
+
+    plt.bar(labels, amounts)
+    plt.xlabel = ("Product")
+    plt.ylabel = ("Revenue")
+    plt.title = ("Revenue")
+    plt.show()
+
+
+def visualize_profit(profit):
+    # Visualize inventory statistics using Matplotlib
+    labels = [item[0] for item in profit]
+    amounts = [item[1] for item in profit]
+
+    plt.bar(labels, amounts)
+    plt.xlabel = ("Product")
+    plt.ylabel = ("Profit")
+    plt.title = ("Profit")
+    plt.show()
+
+
+def get_inventory_data():
+    return [("Product A", 10), ("Product B", 5), ("Product C", 8)]
+
+
+def get_revenue_data():
+    return [("Product A", 100), ("Product B", 50), ("Product C", 80)]
+
+
+def get_profit_data():
+    return [("Product A", 50), ("Product B", 20), ("Product C", 40)]
+
 
 def advance_time(days):
     # Implement the logic for advancing the time by the given number of days
@@ -131,8 +192,10 @@ if __name__ == "__main__":
     main()
 
 
+
 # ------------------------ Checking ----------------------------------- #
  
+
 
 """
 # Check if bought.csv file exists
@@ -154,6 +217,7 @@ print("Current working directory:", os.getcwd())
 
 
 # ------------------------ Testing in Terminal ----------------------------------- #
+
 
 
 # Buying 
