@@ -83,6 +83,7 @@ def buy_product(product_name, product_price, expiration_date):
 
     print("OK")
 
+
 def sell_product(product_name, product_price):
     # Read the available stock from the bought.csv data file
     with open("bought.csv", "r") as file:
@@ -109,22 +110,23 @@ def sell_product(product_name, product_price):
     else:
         print("ERROR: Product not in stock")
 
+
 def generate_report(report_type, report_date):
     # Implement the logic for generating reports
     print("Generating report:", report_type)
     if report_date:
         print("Date:", report_date)
-    
-    # Visualise addition statistics using Matplotlib
+
+    # Additional feature: Visualize statistics using Matplotlib
     if report_type == "inventory":
         inventory = get_inventory_data()
-        visualize_inventory()
+        visualize_inventory(inventory)
     elif report_type == "revenue":
         revenue = get_revenue_data()
-        visualize_revenue()
+        visualize_revenue(revenue)
     elif report_type == "profit":
         profit = get_profit_data()
-        visualize_profit()
+        visualize_profit(profit)
 
 
 def visualize_inventory(inventory):
@@ -136,47 +138,52 @@ def visualize_inventory(inventory):
     plt.xlabel("Product")
     plt.ylabel("Quantity")
     plt.title("Inventory")
-    plt.show
+    plt.show()
+
 
 def visualize_revenue(revenue):
-    # Visualize inventory statistics using Matplotlib
+    # Visualize revenue statistics using Matplotlib
     labels = [item[0] for item in revenue]
     amounts = [item[1] for item in revenue]
 
     plt.bar(labels, amounts)
-    plt.xlabel = ("Product")
-    plt.ylabel = ("Revenue")
-    plt.title = ("Revenue")
+    plt.xlabel("Product")
+    plt.ylabel("Revenue")
+    plt.title("Revenue")
     plt.show()
 
 
 def visualize_profit(profit):
-    # Visualize inventory statistics using Matplotlib
+    # Visualize profit statistics using Matplotlib
     labels = [item[0] for item in profit]
     amounts = [item[1] for item in profit]
 
     plt.bar(labels, amounts)
-    plt.xlabel = ("Product")
-    plt.ylabel = ("Profit")
-    plt.title = ("Profit")
+    plt.xlabel("Product")
+    plt.ylabel("Profit")
+    plt.title("Profit")
     plt.show()
 
 
 def get_inventory_data():
+    # Placeholder function to fetch inventory data
     return [("Product A", 10), ("Product B", 5), ("Product C", 8)]
 
 
 def get_revenue_data():
+    # Placeholder function to fetch revenue data
     return [("Product A", 100), ("Product B", 50), ("Product C", 80)]
 
 
 def get_profit_data():
+    # Placeholder function to fetch profit data
     return [("Product A", 50), ("Product B", 20), ("Product C", 40)]
 
 
 def advance_time(days):
     # Implement the logic for advancing the time by the given number of days
     print("Advancing time by", days, "days")
+
 
 def get_sale_id():
     # Placeholder code to generate a unique sale ID
@@ -190,6 +197,7 @@ def get_current_date():
 
 if __name__ == "__main__":
     main()
+
 
 
 
@@ -238,3 +246,5 @@ print("Current working directory:", os.getcwd())
 
 # Generate a revenue report for specified date "2023-05-01"
 # python main.py report profit
+
+
