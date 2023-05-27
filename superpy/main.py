@@ -300,12 +300,12 @@ This element enhances the tool by providing users with visual representations of
 The implementation utilizes bar charts to display the data, 
 making it easy for users to analyze and interpret the information visually. 
 Data visualization improves the understanding and presentation of complex data sets, 
-enabling users to make decisions based on the visualized insights.
+enabling users to make informed decisions based on the visualized insights.
 
 These technical elements address important aspects of SuperPy's functionality and design. The CLI enhances user interaction, 
 the CSV data file handling ensures efficient data storage and retrieval, 
 and data visualization with Matplotlib enhances data analysis and reporting capabilities. 
-Combined, these elements contribute to a user-friendly supermarket inventory tool 
+Combined, these elements contribute to a powerful and user-friendly supermarket inventory tool 
 that simplifies inventory management, sales tracking, 
 and reporting processes.
 
