@@ -6,12 +6,6 @@ __human_name__ = "templates"
 app = Flask(__name__)
 
 
-__winc_id__ = "9263bbfddbeb4a0397de231a1e33240a"
-__human_name__ = "templates"
-
-
-
-
 @app.route("/home")
 def home():
     return redirect("/")
@@ -28,6 +22,3 @@ def about():
     title = "About"
     return render_template("about.html", title=title)
 
-
-if __name__ == "__main__":
-    app.run()
