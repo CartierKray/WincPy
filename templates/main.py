@@ -6,13 +6,13 @@ __human_name__ = "templates"
 app = Flask(__name__)
 
 
-@app.route("/base/")
+@app.route("/base")
 def base():
     title = "Base"
     return render_template("base.html", title=title)
 
 
-@app.route("/home/")
+@app.route("/home")
 def home():
     return redirect("/")
 
@@ -20,10 +20,10 @@ def home():
 @app.route("/")
 def index():
     title = "Index"
-    return render_template("index_html", title=title)
+    return render_template("index.html", title=title)
 
 
-@app.route("/about/")
+@app.route("/about")
 def about():
     title = "About"
     return render_template("about.html", title=title)
