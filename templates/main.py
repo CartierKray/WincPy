@@ -6,6 +6,28 @@ __human_name__ = "templates"
 app = Flask(__name__)
 
 
+@app.route("/base/")
+def base():
+    title = "Base"
+    return render_template("base.html", title=title)
+
+
+@app.route("/home/")
+def home():
+    return redirect("/")
+
+
 @app.route("/")
 def index():
-    return "This is an empty Flask project that you need to work on."
+    title = "Index"
+    return render_template("index_html", title=title)
+
+
+@app.route("/about/")
+def about():
+    title = "About"
+    return render_template("about.html", title=title)
+
+
+if __name__ == '__main__':
+    app.run()
