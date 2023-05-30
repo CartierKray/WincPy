@@ -16,7 +16,7 @@ def home():
 
 @app.route("/greet/")
 def greet():
-    return "<h1>Hello, World!</h1>"
+    return "<h1>Hello, world!</h1>"
 
 
 @app.route("/greet/<name>")
