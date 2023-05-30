@@ -9,13 +9,7 @@ app = Flask(__name__)
 __winc_id__ = "9263bbfddbeb4a0397de231a1e33240a"
 __human_name__ = "templates"
 
-app = Flask(__name__)
 
-
-@app.route("/base")
-def base():
-    title = "Base"
-    return render_template("base.html", title=title)
 
 
 @app.route("/home")
