@@ -72,7 +72,7 @@ def dashboard():
             greeting = "Hello, User!"
             additional_content = "This is the default dashboard."
         
-        return render_template("dashboard.html", greeting=greeting, additional_content=additional_content) # Redirect to the dashboard page according to login username
+        return render_template("dashboard.html", greeting=greeting, additional_content=additional_content) # Redirect to the dashboard page according to login 
     else:
         return redirect(url_for("login"))  # Redirect to the login page if the user is not logged in    
 
