@@ -21,3 +21,4 @@ fav_hobby = "Calisthenics and Music"
 
 print(name, age, location, fav_hobby)    # Print alle variables in the console
 
+

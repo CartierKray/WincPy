@@ -41,8 +41,6 @@ class Player():
 # print(best_attribute)
 
 
-
-
 # 2
 class Commentator():
      # Instance Method

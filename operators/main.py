@@ -46,3 +46,4 @@ print(result)
 #7
 result = (spain_population > 10000000 and switserland_population <= 10000000) or (switserland_population > 10000000 and spain_population <= 10000000)
 print(result)
+

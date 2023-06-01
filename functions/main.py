@@ -31,3 +31,4 @@ def negative(number):
     return number < 0
 
 negative(-50)
+

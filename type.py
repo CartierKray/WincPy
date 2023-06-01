@@ -16,3 +16,4 @@ print(type(some_number))        # <class 'int'>
 print(type(another_number))     # <class 'float'>
 print(type(some_string))        # <class 'str'>
 
+
