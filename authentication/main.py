@@ -35,30 +35,28 @@ def lon():
 def login():
     title = "Login"
     if request.method == "GET":
-        error = request.args.get("error") # Check if there's an error query parameter
-        return render_template("login.html", error=error, title=title) # Display the login page with the error message if present
+        error = request.args.get("error")
+        return render_template("login.html", error=error, title=title)
 
     elif request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
 
-        users = get_users() # Get the dictionary of usernames and hashed passwords
+        users = get_users()
 
         if username in users:
-            hashed_password = users[username] # Retrieve the hashed password for the given username
-
-            # Has the entered password abd compare it with the hashed password from the database
+            hashed_password = users[username]
             if hash_password(password) == hashed_password:
-                # Succesful login. redirect to the dashboard
+                # Store the username in the session
+                session["username"] = username
                 return redirect(url_for("dashboard"))
 
-        # If the email or password is incorrect, redirect back to the login page with an error message        
         return redirect(url_for("login", error=True))
 
 
 @app.route("/dashboard")
 def dashboard():
-    if username in session:
+    if "username" in session:
         username = session["username"]
 
         # Customize the content based on the logged-in user
@@ -71,11 +69,10 @@ def dashboard():
         else:
             greeting = "Hello, User!"
             additional_content = "This is the default dashboard."
-        
-        return render_template("dashboard.html", greeting=greeting, additional_content=additional_content) # Redirect to the dashboard page according to login 
-    else:
-        return redirect(url_for("login"))  # Redirect to the login page if the user is not logged in    
 
+        return render_template("dashboard.html", greeting=greeting, additional_content=additional_content)
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/logout", methods=["GET", "POST"])
