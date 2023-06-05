@@ -1,12 +1,12 @@
 import peewee
 
-db = peewee.SqliteDatabase("database.db")
+db = peewee.SqliteDatabase(":memory:")
 
 
 class Ingredient(peewee.Model):
     name = peewee.CharField()
     is_vegetarian = peewee.BooleanField()
-    is_vegan = ...
+    is_vegan = peewee.BooleanField()
     is_glutenfree = peewee.BooleanField()
 
     class Meta:
@@ -15,8 +15,8 @@ class Ingredient(peewee.Model):
 
 class Restaurant(peewee.Model):
     name = peewee.CharField()
-    open_since = ...
-    opening_time = ...
+    open_since = peewee.DateField()
+    opening_time = peewee.TimeField()
     closing_time = peewee.TimeField()
 
     class Meta:
@@ -24,9 +24,9 @@ class Restaurant(peewee.Model):
 
 
 class Dish(peewee.Model):
-    name = ...
+    name = peewee.CharField()
     served_at = peewee.ForeignKeyField(Restaurant)
-    price_in_cents = ...
+    price_in_cents = peewee.IntegerField()
     ingredients = peewee.ManyToManyField(Ingredient)
 
     class Meta:
@@ -35,7 +35,7 @@ class Dish(peewee.Model):
 
 class Rating(peewee.Model):
     restaurant = peewee.ForeignKeyField(Restaurant)
-    rating = ...
+    rating = peewee.IntegerField()
     comment = peewee.CharField(null=True)
 
     class Meta:
