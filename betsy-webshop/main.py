@@ -130,6 +130,7 @@ def run_tests():
         print("Failed to purchase product")
     print()
 
+
 if __name__ == "__main__":
     initialize_database()
     populate_test_database()
