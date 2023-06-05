@@ -6,20 +6,17 @@ __human_name__ = "Betsy Webshop"
 
 from models import *
 
-
 def search(term):
     return Product.select().where(
         (fn.Lower(Product.name).contains(term.lower())) |
-        (fn.Lower(Product.description).contains(term.lower())))
-
+        (fn.Lower(Product.description).contains(term.lower()))
+    )
 
 def list_user_products(user_id):
-    return  Product.select().where(Product.user_id == user_id)
-
+    return Product.select().where(Product.user_id == user_id)
 
 def list_products_per_tag(tag_id):
-    return Product.select().join(Product.tags.get_through_model()).where(Tag.id == tag_id)
-
+    return Product.select().join(ProductTag).join(Tag).where(Tag.id == tag_id)
 
 def add_product_to_catalog(user_id, product):
     try:
@@ -35,11 +32,10 @@ def add_product_to_catalog(user_id, product):
             if "tags" in product:
                 for tag_name in product["tags"]:
                     tag, _ = Tag.get_or_create(name=tag_name)
-                    new_product.tags.add(tag)
+                    ProductTag.create(product=new_product, tag=tag)
         return True
     except IntegrityError:
         return False
-
 
 def update_stock(product_id, new_quantity):
     try:
@@ -47,9 +43,8 @@ def update_stock(product_id, new_quantity):
         product.quantity = new_quantity
         product.save()
         return True
-    except DoesNotExist:
+    except Product.DoesNotExist:
         return False
-
 
 def purchase_product(product_id, buyer_id, quantity):
     try:
@@ -63,18 +58,16 @@ def purchase_product(product_id, buyer_id, quantity):
                 return True
             else:
                 return False
-    except DoesNotExist:
+    except Product.DoesNotExist:
         return False
-
 
 def remove_product(product_id):
     try:
         product = Product.get(Product.id == product_id)
-        product.delete.instance()
+        product.delete_instance()
         return True
-    except DoesNotExist:
+    except Product.DoesNotExist:
         return False
-
 
 def run_tests():
     # Search for products based on a term
@@ -129,7 +122,6 @@ def run_tests():
         print("\nProduct purchased successfully")
     else:
         print("\nFailed to purchase product")
-
 
 if __name__ == "__main__":
     initialize_database()

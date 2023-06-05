@@ -1,5 +1,3 @@
-# Models go here
-
 from peewee import *
 
 database = SqliteDatabase("betsy.db")
@@ -26,7 +24,11 @@ class Product(BaseModel):
 
 class Tag(BaseModel):
     name = CharField(unique=True)
-    products = ManyToManyField(Product, backref="tags")
+
+
+class ProductTag(BaseModel):
+    product = ForeignKeyField(Product)
+    tag = ForeignKeyField(Tag)
 
 
 class Transaction(BaseModel):
@@ -37,7 +39,7 @@ class Transaction(BaseModel):
 
 def initialize_database():
     with database:
-        database.create_tables([User, Product, Tag, Transaction, Product.tags.get_through_model()])
+        database.create_tables([User, Product, Tag, ProductTag, Transaction])
 
 
 def populate_test_database():
@@ -55,14 +57,23 @@ def populate_test_database():
         product4 = Product.create(name="Baseball", description="Signed Baseball", price=49.99, quantity=1, user=user4)
 
         # Example Tags
-        tag1 = Tag.create(name="Clothing")
-        tag2 = Tag.create(name="Winter")
-        tag3 = Tag.create(name="Accesoires")
+        tag_names = ["Clothing", "Winter", "Accessories"]
+        tags = []
+        for name in tag_names:
+            try:
+                tag = Tag.create(name=name)
+            except IntegrityError:
+                tag = Tag.get(name=name)
+            tags.append(tag)
 
         # Associate tags with products
-        product1.tags.add([tag1, tag2, tag3])
-        product2.tags.add([tag1, tag2])
-        product3.tags.add([tag1, tag2,])
-        product4.tags.add([tag3])
+        for tag in tags:
+            ProductTag.create(product=product1, tag=tag)
+            ProductTag.create(product=product2, tag=tag)
+            ProductTag.create(product=product3, tag=tag)
+            ProductTag.create(product=product4, tag=tag)
 
 
+if __name__ == "__main__":
+    initialize_database()
+    populate_test_database()
