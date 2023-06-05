@@ -45,8 +45,6 @@ def best_average_rating() -> models.Restaurant:
     return query
 
 
-
-
 def add_rating_to_restaurant() -> None:
     """After visiting a restaurant, you want to leave a rating
 
@@ -85,7 +83,7 @@ def add_dish_to_menu() -> models.Dish:
     ingredients_new_dish = ["cheese", "pasta", "salmon", "onions"]
 
 
- # check if ingredients are in db
+    # Checking if the ingredients are in db
     cheese, created = models.Ingredient.get_or_create(name=ingredients_new_dish[0],
                                              defaults={
                                              'is_vegetarian': True,
@@ -124,8 +122,8 @@ def add_dish_to_menu() -> models.Dish:
 
 
 if __name__ == "__main__":
-    # print(cheapest_dish())
-    # print(vegetarian_dishes())
-    print(best_average_rating())
-    # print(dinner_date_possible())
-    # print(add_dish_to_menu())
+     print(cheapest_dish())
+     print(vegetarian_dishes())
+     print(best_average_rating())
+     print(dinner_date_possible())
+     print(add_dish_to_menu())
