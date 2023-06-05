@@ -75,18 +75,21 @@ def run_tests():
     print("Search Results:")
     for product in search_results:
         print(f"- {product.name}")
+    print()
 
     # View the products of a given user
     user_products = list_user_products(1)
-    print("\nUser Products:")
+    print("User Products:")
     for product in user_products:
         print(f"- {product.name}")
+    print()
 
     # View all products for a given tag
     tag_products = list_products_per_tag(1)
-    print("\nTag Products:")
+    print("Tag Products:")
     for product in tag_products:
         print(f"- {product.name}")
+    print()
 
     # Add a product to a user
     product = {
@@ -98,30 +101,34 @@ def run_tests():
     }
     added = add_product_to_catalog(2, product)
     if added:
-        print("\nProduct added successfully")
+        print("Product added successfully")
     else:
-        print("\nFailed to add product")
+        print("Failed to add product")
+    print()
 
     # Remove a product from a user
     removed = remove_product(2)
     if removed:
-        print("\nProduct removed successfully")
+        print("Product removed successfully")
     else:
-        print("\nFailed to remove product")
+        print("Failed to remove product")
+    print()
 
     # Update the stock quantity of a product
     updated = update_stock(1, 15)
     if updated:
-        print("\nStock quantity updated successfully")
+        print("Stock quantity updated successfully")
     else:
-        print("\nFailed to update stock quantity")
+        print("Failed to update stock quantity")
+    print()
 
     # Handle a purchase between a buyer and a seller for a given product
     purchased = purchase_product(1, 2, 2)
     if purchased:
-        print("\nProduct purchased successfully")
+        print("Product purchased successfully")
     else:
-        print("\nFailed to purchase product")
+        print("Failed to purchase product")
+    print()
 
 if __name__ == "__main__":
     initialize_database()
