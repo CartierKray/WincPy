@@ -76,4 +76,62 @@ def remove_product(product_id):
         return False
 
 
+def run_tests():
+    # Search for products based on a term
+    search_results = search("sweater")
+    print("Search Results:")
+    for product in search_results:
+        print(f"- {product.name}")
 
+    # View the products of a given user
+    user_products = list_user_products(1)
+    print("\nUser Products:")
+    for product in user_products:
+        print(f"- {product.name}")
+
+    # View all products for a given tag
+    tag_products = list_products_per_tag(1)
+    print("\nTag Products:")
+    for product in tag_products:
+        print(f"- {product.name}")
+
+    # Add a product to a user
+    product = {
+        "name": "Gloves",
+        "description": "Warm gloves for winter",
+        "price": 9.99,
+        "quantity": 7,
+        "tags": ["Accessories", "Winter"]
+    }
+    added = add_product_to_catalog(2, product)
+    if added:
+        print("\nProduct added successfully")
+    else:
+        print("\nFailed to add product")
+
+    # Remove a product from a user
+    removed = remove_product(2)
+    if removed:
+        print("\nProduct removed successfully")
+    else:
+        print("\nFailed to remove product")
+
+    # Update the stock quantity of a product
+    updated = update_stock(1, 15)
+    if updated:
+        print("\nStock quantity updated successfully")
+    else:
+        print("\nFailed to update stock quantity")
+
+    # Handle a purchase between a buyer and a seller for a given product
+    purchased = purchase_product(1, 2, 2)
+    if purchased:
+        print("\nProduct purchased successfully")
+    else:
+        print("\nFailed to purchase product")
+
+
+if __name__ == "__main__":
+    initialize_database()
+    populate_test_database()
+    run_tests()
