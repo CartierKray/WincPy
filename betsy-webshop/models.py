@@ -35,6 +35,6 @@ class Transaction(BaseModel):
     quantity = IntegerField()
 
 
-class initialize_databse():
+class initialize_database():
     with database:
         database.create_tables([User, Product, Tag, Transaction, Product.tags.get_through_model()])
