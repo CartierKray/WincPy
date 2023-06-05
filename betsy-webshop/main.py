@@ -93,11 +93,11 @@ def run_tests():
 
     # Add a product to a user
     product = {
-        "name": "Gloves",
-        "description": "Warm gloves for winter",
-        "price": 9.99,
-        "quantity": 7,
-        "tags": ["Accessories", "Winter"]
+        "name": "Pokemon Cards",
+        "description": "Like Ash Ketch'em",
+        "price": 4.99,
+        "quantity": 10,
+        "tags": ["Accessories"]
     }
     added = add_product_to_catalog(2, product)
     if added:
@@ -134,4 +134,5 @@ def run_tests():
 if __name__ == "__main__":
     initialize_database()
     populate_test_database()
-    run_tests()
+    # remove_product(10)
+    # run_tests()

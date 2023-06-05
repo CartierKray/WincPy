@@ -43,6 +43,11 @@ def initialize_database():
 
 
 def populate_test_database():
+    # Check if the database already contains data
+    if User.select().count() > 0:
+        print("Database already populated.")
+        return
+
     with database.atomic():
         # Example Users
         user1 = User.create(name="Johnny", address="Houthalenstraat 88", billing_info="Credit Card")
@@ -68,10 +73,16 @@ def populate_test_database():
 
         # Associate tags with products
         for tag in tags:
-            ProductTag.create(product=product1, tag=tag)
-            ProductTag.create(product=product2, tag=tag)
-            ProductTag.create(product=product3, tag=tag)
-            ProductTag.create(product=product4, tag=tag)
+            if not ProductTag.select().where(ProductTag.product == product1, ProductTag.tag == tag).exists():
+                ProductTag.create(product=product1, tag=tag)
+            if not ProductTag.select().where(ProductTag.product == product2, ProductTag.tag == tag).exists():
+                ProductTag.create(product=product2, tag=tag)
+            if not ProductTag.select().where(ProductTag.product == product3, ProductTag.tag == tag).exists():
+                ProductTag.create(product=product3, tag=tag)
+            if not ProductTag.select().where(ProductTag.product == product4, ProductTag.tag == tag).exists():
+                ProductTag.create(product=product4, tag=tag)
+
+    print("Test database populated successfully.")
 
 
 if __name__ == "__main__":
